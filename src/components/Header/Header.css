@@ -33,7 +33,7 @@
     justify-content: space-between;
     font-size: 14px;
 }
-.main-nav-link-active,
+.main-nav-link.active,
 .logout-link {
     color: #1428ff;
 }
