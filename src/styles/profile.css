@@ -1,0 +1,116 @@
+body {
+    min-width: 1024px;
+    min-height: 100vh;
+}
+
+.profile-main {
+    width: min(84vw, 1160px);
+    margin: 0 auto;
+    flex: 1;
+}
+.profile-layout,
+.profile-user-card,
+.profile-stats-list,
+.profile-details-item {
+    display: flex;
+    align-items: center;
+}
+
+.profile-layout {
+    align-items: flex-start;
+    gap: 56px;
+}
+.profile-left-column {
+    width: 44%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.profile-user-card,
+.profile-details-card {
+    background: #fff;
+    border-radius: 8px;
+}
+.profile-user-card {
+    gap: 28px;
+    min-height: 132px;
+    padding: 24px 28px;
+}
+.profile-user-name {
+    margin: 0 0 8px;
+    font-size: 26px;
+    font-weight: 500;
+}
+.profile-user-member-since,
+.profile-stats-subtitle {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+.profile-details-card {
+    min-height: 300px;
+    padding: 34px 28px;
+}
+.profile-details-title {
+    margin: 0 0 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #eee;
+    font-size: 24px;
+    font-weight: 500;
+}
+.profile-details-list {
+    margin: 0;
+    color: #666;
+}
+.profile-details-item {
+    justify-content: flex-start;
+    gap: 5px;
+    margin-bottom: 24px;
+    font-size: 18px;
+}
+.profile-details-label::after {
+    content: " :";
+}
+.profile-details-value {
+    margin: 0;
+}
+
+.profile-stats-column {
+    flex: 1;
+}
+.profile-stats-header {
+    margin-bottom: 28px;
+}
+.profile-stats-title {
+    margin: 0 0 8px;
+    font-size: 26px;
+    font-weight: 500;
+}
+.profile-stats-list {
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: stretch;
+}
+.profile-stat-card {
+    width: calc(50% - 9px);
+    min-height: 102px;
+    padding: 24px 28px;
+    background: #1428ff;
+    color: #fff;
+    border-radius: 8px;
+}
+.profile-stat-title {
+    margin: 0 0 22px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.profile-stat-value {
+    margin: 0;
+}
+.profile-stat-number {
+    font-size: 26px;
+}
+.profile-stat-unit {
+    font-size: 17px;
+}

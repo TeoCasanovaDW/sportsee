@@ -1,0 +1,39 @@
+.site-header {
+    padding: 34px 0 105px;
+}
+.site-header-inner {
+    width: min(84vw, 1160px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1428ff;
+    font-size: 28px;
+    font-weight: 800;
+}
+.brand-icon {
+    width: 16px;
+}
+
+.main-nav {
+    width: 460px;
+    padding: 16px 48px;
+    background: #fff;
+    border-radius: 40px;
+}
+.main-nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.main-nav-link-active,
+.logout-link {
+    color: #1428ff;
+}

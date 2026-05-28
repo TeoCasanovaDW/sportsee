@@ -1,0 +1,219 @@
+body {
+    min-width: 1024px;
+    min-height: 100vh;
+}
+
+.dashboard-main {
+    width: min(84vw, 1160px);
+    margin: 0 auto;
+    flex: 1;
+}
+.user-summary-card,
+.user-summary-left,
+.user-summary-right,
+.total-distance-card,
+.performances-row,
+.week-row,
+.chart-card-header {
+    display: flex;
+    align-items: center;
+}
+.user-summary-card {
+    justify-content: space-between;
+}
+.chart-card-distance .chart-value,
+.week-progress-value,
+.week-stat-number {
+    color: #1428ff;
+}
+
+.user-summary-card {
+    min-height: 160px;
+    padding: 32px 52px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0), #FFFFFF 100%);
+    border-radius: 18px;
+}
+.user-summary-left {
+    gap: 40px;
+}
+.user-name {
+    margin: 0 0 8px;
+    font-size: 26px;
+    font-weight: 500;
+}
+.user-member-since,
+.total-distance-label,
+.chart-subtitle,
+.section-subtitle,
+.week-progress-subtitle,
+.week-stat-title {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+.user-summary-right {
+    gap: 28px;
+}
+.total-distance-card {
+    gap: 18px;
+    padding: 28px 32px;
+    background: #1428ff;
+    color: #fff;
+    border-radius: 10px;
+}
+.total-distance-icon {
+    width: 36px;
+}
+.total-distance-value {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.section-header {
+    margin: 92px 0 32px;
+}
+.section-title {
+    margin: 0 0 6px;
+    font-size: 26px;
+    font-weight: 500;
+}
+.performances-row,
+.week-row {
+    gap: 28px;
+    align-items: stretch;
+}
+.chart-card,
+.week-card,
+.week-stat-card {
+    background: #fff;
+    border-radius: 8px;
+}
+.chart-card {
+    width: 50%;
+    min-height: 360px;
+    padding: 34px 44px;
+    display: flex;
+    flex-direction: column;
+}
+.chart-card-header {
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+.chart-title {
+    margin: 0 0 10px;
+    font-size: 24px;
+    font-weight: 500;
+}
+.chart-card-heart-rate .chart-value,
+.week-stat-unit {
+    color: #ff351a;
+}
+.chart-period-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #555;
+    white-space: nowrap;
+}
+.period-button {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid #6d6d6d;
+    border-radius: 8px;
+    background: #fff;
+    color: #111;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.period-button:hover {
+    background: #1428ff;
+    border-color: #1428ff;
+    color: #fff;
+}
+.chart-placeholder {
+    flex: 1;
+    margin-top: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #d0d3e8;
+    border-radius: 8px;
+    color: #777;
+    font-size: 15px;
+    text-align: center;
+}
+
+.week-progress-card {
+    width: 43%;
+    min-height: 210px;
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
+.week-stats-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.week-stat-card {
+    padding: 28px 34px;
+}
+.week-progress-title {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.week-progress-value {
+    font-size: 30px;
+    font-weight: 700;
+}
+.chart-placeholder-week-progress {
+    width: 100%;
+    height: 230px;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 20px;
+}
+.week-stat-value {
+    margin: 18px 0 0;
+    font-size: 18px;
+}
+
+.site-footer {
+    margin-top: 56px;
+}
+
+/* Corrections section "Cette semaine" */
+.week-progress-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.week-progress-target {
+    color: #B6BDFC;
+    font-size: 16px;
+}
+.week-stat-card-duration .week-stat-number {
+    color: #1428ff;
+    font-size: 22px;
+}
+.week-stat-card-duration .week-stat-unit {
+    color: #B6BDFC;
+}
+.week-stat-card-distance .week-stat-number {
+    color: #ff351a;
+    font-size: 22px;
+}
+.week-stat-card-distance .week-stat-unit {
+    color: #FCC1B6;
+}

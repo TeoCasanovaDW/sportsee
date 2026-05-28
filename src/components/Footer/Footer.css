@@ -1,0 +1,21 @@
+.site-footer {
+    padding: 12px 0;
+    background: #fff;
+    font-size: 12px;
+}
+.site-footer-inner {
+    width: min(84vw, 1160px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.footer-logo-icon {
+    width: 16px;
+}
