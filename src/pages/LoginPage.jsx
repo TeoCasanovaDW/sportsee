@@ -1,9 +1,27 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import '../styles/login.css'
 import logoMark from '../../assets/icons/logo-mark.svg'
 import loginRunning from '../../assets/images/login-running.jpg'
 
 export default function LoginPage() {
+  const { signIn } = useAuth()
+  const navigate = useNavigate()
+  const [error, setError] = useState(null)
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setError(null)
+    const { username, password } = e.target.elements
+    try {
+      await signIn(username.value, password.value)
+      navigate('/dashboard', { replace: true })
+    } catch {
+      setError('Identifiants incorrects.')
+    }
+  }
+
   return (
     <div className="login-layout">
       <section className="login-panel" aria-labelledby="login-title">
@@ -20,17 +38,20 @@ export default function LoginPage() {
               Transformez<br />vos stats en résultats
             </h1>
 
-            <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="login-form" onSubmit={handleSubmit}>
               <h2 id="login-title" className="form-title">Se connecter</h2>
+
+              {error && <p className="form-error" role="alert">{error}</p>}
 
               <div className="form-field">
                 <label className="form-label" htmlFor="email">Adresse email</label>
                 <input
                   className="form-input"
                   id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  name="username"
+                  type="text"
+                  autoComplete="username"
+                  required
                 />
               </div>
 
@@ -42,6 +63,7 @@ export default function LoginPage() {
                   name="password"
                   type="password"
                   autoComplete="current-password"
+                  required
                 />
               </div>
 
