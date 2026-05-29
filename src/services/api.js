@@ -43,9 +43,3 @@ export async function getUserActivity(startWeek, endWeek) {
   return handleResponse(response)
 }
 
-export async function getProfileImage() {
-  const response = await fetch(`${BASE_URL}/api/profile-image`, {
-    headers: authHeaders(),
-  })
-  return handleResponse(response)
-}
