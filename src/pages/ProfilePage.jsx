@@ -28,8 +28,20 @@ function formatDuration(minutes) {
 export default function ProfilePage() {
   const { userInfo, loading, error } = useUser()
 
-  if (loading) return <p className="page-loading">Chargement…</p>
-  if (error) return <p className="page-error">Erreur : {error}</p>
+  if (loading) return (
+    <div className="app-layout app-layout-profile">
+      <Header />
+      <main className="profile-main"><p className="page-loading">Chargement…</p></main>
+      <Footer />
+    </div>
+  )
+  if (error) return (
+    <div className="app-layout app-layout-profile">
+      <Header />
+      <main className="profile-main"><p className="page-error">Impossible de charger les données. Vérifiez que l'API est lancée.</p></main>
+      <Footer />
+    </div>
+  )
 
   const firstName = userInfo?.firstName || '—'
   const lastName = userInfo?.lastName || ''
