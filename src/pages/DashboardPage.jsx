@@ -155,7 +155,7 @@ function getCurrentWeekBounds() {
 }
 
 export default function DashboardPage() {
-  const { userInfo } = useUser()
+  const { userInfo, loading: userLoading, error: userError } = useUser()
 
   // Graphiques distance + FC : fenêtre navigable de 4 semaines
   const [pageOffset, setPageOffset] = useState(0)
@@ -211,6 +211,22 @@ export default function DashboardPage() {
       avg: s.heartRate.average,
     }))
   }, [activity])
+
+  if (userLoading) return (
+    <div className="app-layout app-layout-dashboard">
+      <Header />
+      <main className="dashboard-main"><p className="page-loading">Chargement…</p></main>
+      <Footer />
+    </div>
+  )
+
+  if (userError) return (
+    <div className="app-layout app-layout-dashboard">
+      <Header />
+      <main className="dashboard-main"><p className="page-error">Impossible de charger les données. Vérifiez que l'API est lancée.</p></main>
+      <Footer />
+    </div>
+  )
 
   // Données graphique donut objectif hebdomadaire
   const completedSessions = typeof sessionsCount === 'number' ? sessionsCount : 0
@@ -359,7 +375,7 @@ export default function DashboardPage() {
                       dataKey="value"
                       label={renderDonutLabel}
                       labelLine={false}
-                      cornerRadius="5%"
+                      cornerRadius={5}
                     >
                       <Cell fill="#1428ff" />
                       <Cell fill="#e0e3ff" />

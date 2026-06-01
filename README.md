@@ -14,6 +14,7 @@ L'objectif est de reproduire fidèlement une maquette HTML/CSS existante sous fo
 | React Router 6 | Navigation et routes protégées |
 | Context API | État global (auth, données utilisateur) |
 | Fetch API | Appels HTTP vers l'API locale |
+| Recharts 3 | Visualisations graphiques (barres, fréquence cardiaque, donut) |
 | Vite | Outil de build et serveur de développement |
 | CSS existant | Styles repris de la maquette HTML/CSS |
 
