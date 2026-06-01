@@ -1,0 +1,92 @@
+# =========================
+# Dependencies
+# =========================
+node_modules/
+.pnp/
+.pnp.js
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+.next/
+out/
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.local
+.env.*.local
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# System files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# Tests / Coverage
+# =========================
+coverage/
+
+# =========================
+# Cache
+# =========================
+.cache/
+.parcel-cache/
+.vite/
+.eslintcache
+
+# =========================
+# Claude / AI working files
+# =========================
+CLAUDE.md
+PROMPTS.md
+TASKS.md
+structure.txt
+notes.md
+brief.md
+todo.md
+plan.md
+documentation.md
+
+# Dossiers éventuels de travail IA
+.ai/
+claude/
+prompts/
+docs-private/
+project-notes/
+init-project/
+
+# =========================
+# Backend local / API clone
+# =========================
+backend/
+micro-api/
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp

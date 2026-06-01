@@ -136,6 +136,15 @@ body {
     border-color: #1428ff;
     color: #fff;
 }
+.period-button:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+.period-button:disabled:hover {
+    background: #fff;
+    border-color: #6d6d6d;
+    color: #111;
+}
 .chart-placeholder {
     flex: 1;
     margin-top: 34px;
@@ -147,6 +156,41 @@ body {
     color: #777;
     font-size: 15px;
     text-align: center;
+}
+
+.chart-container {
+    flex: 1;
+    margin-top: 34px;
+}
+.chart-container-bars {
+    min-height: 270px;
+}
+.chart-container-donut {
+    width: 100%;
+    flex: 0 0 auto;
+    margin: 0;
+}
+.chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0 0 6px;
+}
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.chart-legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.chart-legend-text {
+    font-size: 11px;
+    color: #aaa;
 }
 
 .week-progress-card {
