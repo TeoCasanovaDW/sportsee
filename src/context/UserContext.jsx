@@ -6,7 +6,7 @@ const UserContext = createContext(null)
 
 function normalizeUserInfo(data) {
   const p = data.profile ?? data
-  const s = data.statistics ?? data.stats ?? {}
+  const s = data.statistics ?? {}
   return {
     firstName: p.firstName ?? '',
     lastName: p.lastName ?? '',
@@ -15,11 +15,13 @@ function normalizeUserInfo(data) {
     height: p.height ?? null,
     weight: p.weight ?? null,
     profilePicture: p.profilePicture ?? '',
+    gender: p.gender == "female" ? "Femme" : "Homme",
     stats: {
       totalDistance: parseFloat(s.totalDistance) || 0,
       totalDuration: s.totalDuration ?? 0,
       sessionsCount: s.totalSessions ?? s.sessionsCount ?? 0,
     },
+    weeklyGoal: data.weeklyGoal
   }
 }
 

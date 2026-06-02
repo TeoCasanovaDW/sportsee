@@ -7,7 +7,6 @@ import { useUser } from '../context/UserContext'
 const MONTHS_LONG = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
 
 const profileFallbackStats = {
-  gender: 'Femme',
   caloriesBurned: '25 000 kcal',
   restDays: 9,
 }
@@ -54,6 +53,7 @@ export default function ProfilePage() {
   const age = userInfo?.age ?? '—'
   const height = userInfo?.height ?? '—'
   const weight = userInfo?.weight ?? '—'
+  const gender = userInfo?.gender ?? '—'
   const totalDistance = userInfo?.stats?.totalDistance ?? '—'
   const totalDuration = formatDuration(userInfo?.stats?.totalDuration)
   const sessionsCount = userInfo?.stats?.sessionsCount ?? '—'
@@ -94,7 +94,7 @@ export default function ProfilePage() {
 
                 <div className="profile-details-item">
                   <dt className="profile-details-label">Genre</dt>
-                  <dd className="profile-details-value">{profileFallbackStats.gender}</dd>
+                  <dd className="profile-details-value">{gender}</dd>
                 </div>
 
                 <div className="profile-details-item">

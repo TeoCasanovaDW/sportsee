@@ -15,9 +15,6 @@ import {
 const MONTHS_LONG = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
 const MONTHS_SHORT = ['jan','fév','mars','avr','mai','juin','juil','août','sep','oct','nov','déc']
 
-// Constante locale pour la maquette — l'API ne fournit pas d'objectif
-const WEEKLY_SESSIONS_GOAL = 6
-
 function formatLongDate(iso) {
   if (!iso) return '—'
   const [year, month, day] = iso.split('-')
@@ -173,6 +170,7 @@ export default function DashboardPage() {
     ? `Membre depuis le ${formatLongDate(userInfo.memberSince)}`
     : '—'
   const totalDistance = userInfo?.stats?.totalDistance ?? '—'
+  const weeklyGoal = userInfo?.weeklyGoal ?? '—'
 
   const avatarSrc = userInfo?.profilePicture || profileClara
 
@@ -230,9 +228,9 @@ export default function DashboardPage() {
 
   // Données graphique donut objectif hebdomadaire
   const completedSessions = typeof sessionsCount === 'number' ? sessionsCount : 0
-  const remainingSessions = Math.max(WEEKLY_SESSIONS_GOAL - completedSessions, 0)
+  const remainingSessions = Math.max(weeklyGoal - completedSessions, 0)
   const donutData = [
-    { name: `${completedSessions} réalisée${completedSessions > 1 ? "s" : ""}`, value: Math.min(completedSessions, WEEKLY_SESSIONS_GOAL) },
+    { name: `${completedSessions} réalisée${completedSessions > 1 ? "s" : ""}`, value: Math.min(completedSessions, weeklyGoal) },
     { name: `${remainingSessions} restante${remainingSessions > 1 ? "s" : ""}`, value: remainingSessions },
   ]
 
@@ -356,7 +354,7 @@ export default function DashboardPage() {
               <div className="week-progress-content">
                 <h3 className="week-progress-title">
                   <span className="week-progress-value">x{sessionsCount}</span>
-                  <span className="week-progress-target">sur objectif de {WEEKLY_SESSIONS_GOAL}</span>
+                  <span className="week-progress-target">sur objectif de {weeklyGoal}</span>
                 </h3>
                 <p className="week-progress-subtitle">Courses hebdomadaire réalisées</p>
               </div>
