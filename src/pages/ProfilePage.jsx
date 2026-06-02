@@ -42,21 +42,14 @@ export default function ProfilePage() {
     </div>
   )
 
-  const firstName = userInfo?.firstName || '—'
-  const lastName = userInfo?.lastName || ''
-  const fullName = lastName ? `${firstName} ${lastName}` : firstName
-  const memberSince = userInfo?.memberSince
+  const memberSince = userInfo.memberSince
     ? `Membre depuis le ${formatLongDate(userInfo.memberSince)}`
     : '—'
-  const avatarSrc = userInfo?.profilePicture || profileClara
+  const avatarSrc = userInfo.profilePicture || profileClara
 
-  const age = userInfo?.age ?? '—'
-  const height = userInfo?.height ?? '—'
-  const weight = userInfo?.weight ?? '—'
-  const gender = userInfo?.gender ?? '—'
-  const totalDistance = userInfo?.stats?.totalDistance ?? '—'
-  const totalDuration = formatDuration(userInfo?.stats?.totalDuration)
-  const sessionsCount = userInfo?.stats?.sessionsCount ?? '—'
+  const { fullName, age, height, weight, gender } = userInfo
+  const { totalDistance, totalDuration: rawDuration, sessionsCount } = userInfo.stats
+  const totalDuration = formatDuration(rawDuration)
 
   return (
     <div className="app-layout app-layout-profile">
@@ -113,7 +106,7 @@ export default function ProfilePage() {
           <section className="profile-stats-column" aria-labelledby="profile-stats-title">
             <header className="profile-stats-header">
               <h2 id="profile-stats-title" className="profile-stats-title">Vos statistiques</h2>
-              {userInfo?.memberSince && (
+              {userInfo.memberSince && (
                 <p className="profile-stats-subtitle">depuis le {formatLongDate(userInfo.memberSince)}</p>
               )}
             </header>

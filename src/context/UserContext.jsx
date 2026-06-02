@@ -7,21 +7,24 @@ const UserContext = createContext(null)
 function normalizeUserInfo(data) {
   const p = data.profile ?? data
   const s = data.statistics ?? {}
+  const firstName = p.firstName ?? '—'
+  const lastName = p.lastName ?? ''
   return {
-    firstName: p.firstName ?? '',
-    lastName: p.lastName ?? '',
-    memberSince: p.createdAt ?? p.memberSince ?? '',
-    age: p.age ?? null,
-    height: p.height ?? null,
-    weight: p.weight ?? null,
+    firstName,
+    lastName,
+    fullName: lastName ? `${firstName} ${lastName}` : firstName,
+    memberSince: p.createdAt ?? p.memberSince ?? null,
+    age: p.age ?? '—',
+    height: p.height ?? '—',
+    weight: p.weight ?? '—',
     profilePicture: p.profilePicture ?? '',
-    gender: p.gender == "female" ? "Femme" : "Homme",
+    gender: p.gender == null ? '—' : p.gender === 'female' ? 'Femme' : 'Homme',
     stats: {
-      totalDistance: parseFloat(s.totalDistance) || 0,
+      totalDistance: s.totalDistance != null ? parseFloat(s.totalDistance) : '—',
       totalDuration: s.totalDuration ?? 0,
-      sessionsCount: s.totalSessions ?? s.sessionsCount ?? 0,
+      sessionsCount: s.totalSessions ?? s.sessionsCount ?? '—',
     },
-    weeklyGoal: data.weeklyGoal
+    weeklyGoal: data.weeklyGoal ?? '—',
   }
 }
 

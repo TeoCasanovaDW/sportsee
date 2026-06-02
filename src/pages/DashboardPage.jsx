@@ -163,16 +163,13 @@ export default function DashboardPage() {
   const { startWeek: cwStart, endWeek: cwEnd } = useMemo(() => getCurrentWeekBounds(), [])
   const { data: currentWeekActivity } = useUserActivity(cwStart, cwEnd)
 
-  const firstName = userInfo?.firstName || '—'
-  const lastName = userInfo?.lastName || ''
-  const fullName = lastName ? `${firstName} ${lastName}` : firstName
-  const memberSince = userInfo?.memberSince
+  const { fullName, weeklyGoal } = userInfo
+  const memberSince = userInfo.memberSince
     ? `Membre depuis le ${formatLongDate(userInfo.memberSince)}`
     : '—'
-  const totalDistance = userInfo?.stats?.totalDistance ?? '—'
-  const weeklyGoal = userInfo?.weeklyGoal ?? '—'
+  const totalDistance = userInfo.stats.totalDistance
 
-  const avatarSrc = userInfo?.profilePicture || profileClara
+  const avatarSrc = userInfo.profilePicture || profileClara
 
   // Stats section "Cette semaine" — semaine courante uniquement
   const sessionsCount = currentWeekActivity?.weeklyStats?.sessionsCount ?? '—'
