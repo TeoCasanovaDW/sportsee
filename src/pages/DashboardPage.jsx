@@ -11,27 +11,7 @@ import {
   ComposedChart, Line,
   PieChart, Pie, Cell, Legend,
 } from 'recharts'
-
-const MONTHS_LONG = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
-const MONTHS_SHORT = ['jan','fév','mars','avr','mai','juin','juil','août','sep','oct','nov','déc']
-
-function formatLongDate(iso) {
-  if (!iso) return '—'
-  const [year, month, day] = iso.split('-')
-  return `${parseInt(day, 10)} ${MONTHS_LONG[parseInt(month, 10) - 1]} ${year}`
-}
-
-function formatShortDate(iso) {
-  if (!iso) return '—'
-  const [, month, day] = iso.split('-')
-  return `${parseInt(day, 10)} ${MONTHS_SHORT[parseInt(month, 10) - 1]}`
-}
-
-function formatSlashDate(iso) {
-  if (!iso) return '—'
-  const [year, month, day] = iso.split('-')
-  return `${day}/${month}/${year}`
-}
+import { formatLongDate, formatShortDate, formatSlashDate } from '../utils/formatDate'
 
 function avgHeartRate(sessions) {
   if (!sessions?.length) return null

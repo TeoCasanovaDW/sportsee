@@ -3,25 +3,11 @@ import profileClara from '../../assets/images/profile-clara.jpg'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import { useUser } from '../context/UserContext'
-
-const MONTHS_LONG = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
+import { formatLongDate, formatDuration } from '../utils/formatDate'
 
 const profileFallbackStats = {
   caloriesBurned: '25 000',
   restDays: 9,
-}
-
-function formatLongDate(iso) {
-  if (!iso) return '—'
-  const [year, month, day] = iso.split('-')
-  return `${parseInt(day, 10)} ${MONTHS_LONG[parseInt(month, 10) - 1]} ${year}`
-}
-
-function formatDuration(minutes) {
-  if (!minutes) return { hours: '—', minutes: '' }
-  const h = Math.floor(minutes / 60)
-  const min = minutes % 60
-  return { hours: `${h}h`, minutes: min > 0 ? `${String(min).padStart(2, '0')}min` : '' }
 }
 
 export default function ProfilePage() {
