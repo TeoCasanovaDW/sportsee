@@ -6,12 +6,10 @@ import Footer from '../components/Footer/Footer'
 import { useUser } from '../context/UserContext'
 import { useUserActivity } from '../hooks/useUserActivity'
 import { useMemo, useState } from 'react'
-import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
-  ComposedChart, Line,
-  PieChart, Pie, Cell, Legend,
-} from 'recharts'
 import { formatLongDate, formatShortDate, formatSlashDate } from '../utils/formatDate'
+import DistanceChart from '../components/charts/DistanceChart'
+import HeartRateChart from '../components/charts/HeartRateChart'
+import WeeklyGoalDonut from '../components/charts/WeeklyGoalDonut'
 
 function avgHeartRate(sessions) {
   if (!sessions?.length) return null
@@ -43,64 +41,6 @@ function groupSessionsByWeek(sessions, periodStart) {
 function roundDist(v) {
   if (v == null) return '—'
   return Math.round(Number(v) * 10) / 10
-}
-
-function renderDonutLabel({ cx, cy, midAngle, outerRadius, name, value, index }) {
-  if (value === 0) return null
-  const RADIAN = Math.PI / 180
-  const radius = outerRadius + 28
-  const x = cx + radius * Math.cos(-midAngle * RADIAN)
-  const y = cy + radius * Math.sin(-midAngle * RADIAN)
-  const isRight = x > cx
-  const dotColor = index === 0 ? '#1428ff' : '#c6cafc'
-  return (
-    <g>
-      <circle cx={x} cy={y} r={4} fill={dotColor} />
-      <text
-        x={isRight ? x + 11 : x - 11}
-        y={y}
-        fill="#666"
-        textAnchor={isRight ? 'start' : 'end'}
-        dominantBaseline="central"
-        fontSize={12}
-      >
-        {name}
-      </text>
-    </g>
-  )
-}
-
-function DistanceLegend() {
-  return (
-    <div className="chart-legend">
-      <span className="chart-legend-item">
-        <span className="chart-legend-dot" style={{ background: '#7B82F5' }} />
-        <span className="chart-legend-text">Km</span>
-      </span>
-    </div>
-  )
-}
-
-function HeartRateLegend() {
-  return (
-    <div className="chart-legend">
-      <span className="chart-legend-item">
-        <span className="chart-legend-dot" style={{ background: '#ffb3b3' }} />
-        <span className="chart-legend-text">Min</span>
-      </span>
-      <span className="chart-legend-item">
-        <span className="chart-legend-dot" style={{ background: '#ff6b50' }} />
-        <span className="chart-legend-text">Max BPM</span>
-      </span>
-      <span className="chart-legend-item">
-        <svg width="20" height="12" style={{ display: 'block' }}>
-          <line x1="0" y1="6" x2="20" y2="6" stroke="#1428ff" strokeWidth="2" />
-          <circle cx="10" cy="6" r="3" fill="#1428ff" />
-        </svg>
-        <span className="chart-legend-text">Moy BPM</span>
-      </span>
-    </div>
-  )
 }
 
 function getWeekBounds(offset) {
@@ -136,8 +76,6 @@ export default function DashboardPage() {
 
   // Graphiques distance + FC : fenêtre navigable de 4 semaines
   const [pageOffset, setPageOffset] = useState(0)
-  const [bpmHovered, setBpmHovered] = useState(false)
-  const [kmHovered, setKmHovered] = useState(false)
   const { startWeek, endWeek } = useMemo(() => getWeekBounds(pageOffset), [pageOffset])
   const { data: activity } = useUserActivity(startWeek, endWeek)
 
@@ -253,72 +191,22 @@ export default function DashboardPage() {
           </header>
 
           <div className="performances-row">
-            <article className="chart-card chart-card-distance" onMouseEnter={() => setKmHovered(true)} onMouseLeave={() => setKmHovered(false)}>
-              <header className="chart-card-header">
-                <div className="chart-title-group">
-                  <h3 className="chart-title">
-                    <span className="chart-value">
-                      {weeklyAvgDistance !== '—' ? `${weeklyAvgDistance}km` : '—'}
-                    </span>{' '}
-                    en moyenne
-                  </h3>
-                  <p className="chart-subtitle">Total des kilomètres 4 dernières semaines</p>
-                </div>
-
-                <div className="chart-period-selector" aria-label="Période du graphique distance">
-                  <button className="period-button period-button-previous" type="button" aria-label="Période précédente" onClick={() => setPageOffset(o => o - 1)}>‹</button>
-                  <span className="period-label">{periodLabel}</span>
-                  <button className="period-button period-button-next" type="button" aria-label="Période suivante" onClick={() => setPageOffset(o => Math.min(0, o + 1))} disabled={pageOffset >= 0}>›</button>
-                </div>
-              </header>
-
-              <div className="chart-container chart-container-bars">
-                <ResponsiveContainer width="100%" height={260}>
-                  <BarChart data={weeklyDistanceData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-                    <CartesianGrid vertical={false} stroke="#f0f0f0" strokeDasharray="3 3" />
-                    <XAxis dataKey="label" axisLine={{ stroke: '#e5e5e5', strokeWidth: 1 }} tickLine={false} tick={{ fontSize: 13, fill: '#aaa' }} />
-                    <YAxis axisLine={{ stroke: '#e5e5e5', strokeWidth: 1 }} tickLine={false} tick={{ fontSize: 12, fill: '#aaa' }} />
-                    <Tooltip formatter={(v) => [`${v} km`, 'Distance']} cursor={false} />
-                    <Legend verticalAlign="bottom" align="left" content={() => <DistanceLegend />} />
-                    <Bar dataKey="km" name="Distance" fill={kmHovered ? '#1428ff' : '#B6BDFC'} radius={[15, 15, 15, 15]} barSize={16} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </article>
-
-            <article className="chart-card chart-card-heart-rate" onMouseEnter={() => setBpmHovered(true)} onMouseLeave={() => setBpmHovered(false)}>
-              <header className="chart-card-header">
-                <div className="chart-title-group">
-                  <h3 className="chart-title">
-                    <span className="chart-value">
-                      {heartRate != null ? `${heartRate} BPM` : '—'}
-                    </span>
-                  </h3>
-                  <p className="chart-subtitle">Fréquence cardiaque moyenne</p>
-                </div>
-
-                <div className="chart-period-selector" aria-label="Période du graphique fréquence cardiaque">
-                  <button className="period-button period-button-previous" type="button" aria-label="Période précédente" onClick={() => setPageOffset(o => o - 1)}>‹</button>
-                  <span className="period-label">{periodLabel}</span>
-                  <button className="period-button period-button-next" type="button" aria-label="Période suivante" onClick={() => setPageOffset(o => Math.min(0, o + 1))} disabled={pageOffset >= 0}>›</button>
-                </div>
-              </header>
-
-              <div className="chart-container chart-container-bars">
-                <ResponsiveContainer width="100%" height={260}>
-                  <ComposedChart data={heartRateData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }} barGap={2} barCategoryGap="30%">
-                    <CartesianGrid vertical={false} stroke="#f0f0f0" strokeDasharray="3 3" />
-                    <XAxis dataKey="date" axisLine={{ stroke: '#e5e5e5', strokeWidth: 1 }} tickLine={false} tick={{ fontSize: 11, fill: '#aaa' }} />
-                    <YAxis axisLine={{ stroke: '#e5e5e5', strokeWidth: 1 }} tickLine={false} tick={{ fontSize: 12, fill: '#aaa' }} domain={['auto', 'auto']} />
-                    <Tooltip />
-                    <Legend verticalAlign="bottom" align="left" content={() => <HeartRateLegend />} />
-                    <Bar dataKey="min" name="Min" fill="#ffb3b3" radius={[15, 15, 15, 15]} barSize={16} />
-                    <Bar dataKey="max" name="Max BPM" fill="#ff6b50" radius={[15, 15, 15, 15]} barSize={16} />
-                    <Line type="monotone" dataKey="avg" name="Moy BPM" stroke={bpmHovered ? '#1428ff' : '#F2F3FF'} strokeWidth={2} dot={{ fill: '#1428ff', stroke: '#1428ff', r: 3 }} activeDot={{ fill: '#1428ff', stroke: '#1428ff', r: 3 }} />
-                  </ComposedChart>
-                </ResponsiveContainer>
-              </div>
-            </article>
+            <DistanceChart
+              data={weeklyDistanceData}
+              weeklyAvgDistance={weeklyAvgDistance}
+              periodLabel={periodLabel}
+              pageOffset={pageOffset}
+              onPrev={() => setPageOffset(o => o - 1)}
+              onNext={() => setPageOffset(o => Math.min(0, o + 1))}
+            />
+            <HeartRateChart
+              data={heartRateData}
+              heartRate={heartRate}
+              periodLabel={periodLabel}
+              pageOffset={pageOffset}
+              onPrev={() => setPageOffset(o => o - 1)}
+              onNext={() => setPageOffset(o => Math.min(0, o + 1))}
+            />
           </div>
         </section>
 
@@ -329,38 +217,11 @@ export default function DashboardPage() {
           </header>
 
           <div className="week-row">
-            <article className="week-card week-progress-card">
-              <div className="week-progress-content">
-                <h3 className="week-progress-title">
-                  <span className="week-progress-value">x{sessionsCount}</span>
-                  <span className="week-progress-target">sur objectif de {weeklyGoal}</span>
-                </h3>
-                <p className="week-progress-subtitle">Courses hebdomadaire réalisées</p>
-              </div>
-
-              <div className="chart-container chart-container-donut">
-                <ResponsiveContainer width="100%" height={240}>
-                  <PieChart margin={{ top: 24, right: 52, bottom: 24, left: 52 }}>
-                    <Pie
-                      data={donutData}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={42}
-                      outerRadius={84}
-                      startAngle={90}
-                      endAngle={450}
-                      dataKey="value"
-                      label={renderDonutLabel}
-                      labelLine={false}
-                      cornerRadius={5}
-                    >
-                      <Cell fill="#1428ff" />
-                      <Cell fill="#e0e3ff" />
-                    </Pie>
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </article>
+            <WeeklyGoalDonut
+              donutData={donutData}
+              sessionsCount={sessionsCount}
+              weeklyGoal={weeklyGoal}
+            />
 
             <div className="week-stats-column">
               <article className="week-stat-card week-stat-card-duration">
