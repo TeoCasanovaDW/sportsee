@@ -38,7 +38,7 @@ body {
 }
 .user-name {
     margin: 0 0 8px;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 500;
 }
 .user-member-since,
@@ -50,6 +50,12 @@ body {
     margin: 0;
     color: #777;
     font-size: 14px;
+}
+.section-subtitle{
+    font-size: 16px;
+}
+.week-stat-title {
+    font-weight: normal;
 }
 .user-summary-right {
     gap: 28px;
@@ -88,6 +94,12 @@ body {
 .week-stat-card {
     background: #fff;
     border-radius: 8px;
+    box-shadow: 0px 4px 84px -40px rgba(157, 167, 251, 0.4);
+    transition: .3s;
+}
+.chart-card:hover,
+.week-card:hover {
+    box-shadow: 0px 4px 54px -18px rgba(157, 167, 251, 0.6);
 }
 .chart-card {
     width: 50%;

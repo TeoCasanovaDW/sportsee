@@ -39,7 +39,7 @@ body {
 }
 .profile-user-name {
     margin: 0 0 8px;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 500;
 }
 .profile-user-member-since,
@@ -56,7 +56,7 @@ body {
     margin: 0 0 28px;
     padding-bottom: 22px;
     border-bottom: 1px solid #eee;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
 }
 .profile-details-list {
@@ -84,7 +84,7 @@ body {
 }
 .profile-stats-title {
     margin: 0 0 8px;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 500;
 }
 .profile-stats-list {
@@ -109,8 +109,10 @@ body {
     margin: 0;
 }
 .profile-stat-number {
-    font-size: 26px;
+    font-size: 22px;
+    font-weight: medium;
 }
 .profile-stat-unit {
-    font-size: 17px;
+    font-size: 16px;
+    color: #B6BDFC;
 }

@@ -7,7 +7,7 @@ import { useUser } from '../context/UserContext'
 const MONTHS_LONG = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
 
 const profileFallbackStats = {
-  caloriesBurned: '25 000 kcal',
+  caloriesBurned: '25 000',
   restDays: 9,
 }
 
@@ -18,10 +18,10 @@ function formatLongDate(iso) {
 }
 
 function formatDuration(minutes) {
-  if (!minutes) return '—'
+  if (!minutes) return { hours: '—', minutes: '' }
   const h = Math.floor(minutes / 60)
   const min = minutes % 60
-  return min > 0 ? `${h}h${String(min).padStart(2, '0')}` : `${h}h`
+  return { hours: `${h}h`, minutes: min > 0 ? `${String(min).padStart(2, '0')}min` : '' }
 }
 
 export default function ProfilePage() {
@@ -115,7 +115,8 @@ export default function ProfilePage() {
               <article className="profile-stat-card">
                 <h3 className="profile-stat-title">Temps total couru</h3>
                 <p className="profile-stat-value">
-                  <span className="profile-stat-number">{totalDuration}</span>
+                  <span className="profile-stat-number">{totalDuration.hours}</span>
+                  {totalDuration.minutes != "" && <span className="profile-stat-unit"> {totalDuration.minutes}</span>}
                 </p>
               </article>
 
@@ -123,6 +124,7 @@ export default function ProfilePage() {
                 <h3 className="profile-stat-title">Calories brûlées</h3>
                 <p className="profile-stat-value">
                   <span className="profile-stat-number">{profileFallbackStats.caloriesBurned}</span>
+                  <span className="profile-stat-unit"> kcal</span>
                 </p>
               </article>
 
@@ -135,18 +137,18 @@ export default function ProfilePage() {
               </article>
 
               <article className="profile-stat-card">
-                <h3 className="profile-stat-title">Nombre de sessions</h3>
-                <p className="profile-stat-value">
-                  <span className="profile-stat-number">{sessionsCount}</span>
-                  <span className="profile-stat-unit"> sessions</span>
-                </p>
-              </article>
-
-              <article className="profile-stat-card">
                 <h3 className="profile-stat-title">Nombre de jours de repos</h3>
                 <p className="profile-stat-value">
                   <span className="profile-stat-number">{profileFallbackStats.restDays}</span>
                   <span className="profile-stat-unit"> jours</span>
+                </p>
+              </article>
+
+              <article className="profile-stat-card">
+                <h3 className="profile-stat-title">Nombre de sessions</h3>
+                <p className="profile-stat-value">
+                  <span className="profile-stat-number">{sessionsCount}</span>
+                  <span className="profile-stat-unit"> sessions</span>
                 </p>
               </article>
             </div>

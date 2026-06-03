@@ -156,6 +156,8 @@ export default function DashboardPage() {
 
   // Graphiques distance + FC : fenêtre navigable de 4 semaines
   const [pageOffset, setPageOffset] = useState(0)
+  const [bpmHovered, setBpmHovered] = useState(false)
+  const [kmHovered, setKmHovered] = useState(false)
   const { startWeek, endWeek } = useMemo(() => getWeekBounds(pageOffset), [pageOffset])
   const { data: activity } = useUserActivity(startWeek, endWeek)
 
@@ -271,7 +273,7 @@ export default function DashboardPage() {
           </header>
 
           <div className="performances-row">
-            <article className="chart-card chart-card-distance">
+            <article className="chart-card chart-card-distance" onMouseEnter={() => setKmHovered(true)} onMouseLeave={() => setKmHovered(false)}>
               <header className="chart-card-header">
                 <div className="chart-title-group">
                   <h3 className="chart-title">
@@ -296,15 +298,15 @@ export default function DashboardPage() {
                     <CartesianGrid vertical={false} stroke="#f0f0f0" strokeDasharray="3 3" />
                     <XAxis dataKey="label" axisLine={{ stroke: '#e5e5e5', strokeWidth: 1 }} tickLine={false} tick={{ fontSize: 13, fill: '#aaa' }} />
                     <YAxis axisLine={{ stroke: '#e5e5e5', strokeWidth: 1 }} tickLine={false} tick={{ fontSize: 12, fill: '#aaa' }} />
-                    <Tooltip formatter={(v) => [`${v} km`, 'Distance']} />
+                    <Tooltip formatter={(v) => [`${v} km`, 'Distance']} cursor={false} />
                     <Legend verticalAlign="bottom" align="left" content={() => <DistanceLegend />} />
-                    <Bar dataKey="km" name="Distance" fill="#7B82F5" radius={[15, 15, 15, 15]} barSize={16} />
+                    <Bar dataKey="km" name="Distance" fill={kmHovered ? '#1428ff' : '#B6BDFC'} radius={[15, 15, 15, 15]} barSize={16} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </article>
 
-            <article className="chart-card chart-card-heart-rate">
+            <article className="chart-card chart-card-heart-rate" onMouseEnter={() => setBpmHovered(true)} onMouseLeave={() => setBpmHovered(false)}>
               <header className="chart-card-header">
                 <div className="chart-title-group">
                   <h3 className="chart-title">
@@ -332,7 +334,7 @@ export default function DashboardPage() {
                     <Legend verticalAlign="bottom" align="left" content={() => <HeartRateLegend />} />
                     <Bar dataKey="min" name="Min" fill="#ffb3b3" radius={[15, 15, 15, 15]} barSize={16} />
                     <Bar dataKey="max" name="Max BPM" fill="#ff6b50" radius={[15, 15, 15, 15]} barSize={16} />
-                    <Line type="monotone" dataKey="avg" name="Moy BPM" stroke="#1428ff" strokeWidth={2} dot={false} />
+                    <Line type="monotone" dataKey="avg" name="Moy BPM" stroke={bpmHovered ? '#1428ff' : '#F2F3FF'} strokeWidth={2} dot={{ fill: '#1428ff', stroke: '#1428ff', r: 3 }} activeDot={{ fill: '#1428ff', stroke: '#1428ff', r: 3 }} />
                   </ComposedChart>
                 </ResponsiveContainer>
               </div>
