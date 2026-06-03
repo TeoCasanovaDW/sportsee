@@ -27,7 +27,7 @@ function formatDuration(minutes) {
 export default function ProfilePage() {
   const { userInfo, loading, error } = useUser()
 
-  if (loading) return (
+  if (loading || !userInfo) return (
     <div className="app-layout app-layout-profile">
       <Header />
       <main className="profile-main"><p className="page-loading">Chargement…</p></main>

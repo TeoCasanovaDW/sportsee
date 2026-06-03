@@ -187,7 +187,7 @@ export default function DashboardPage() {
     }))
   }, [activity])
 
-  if (userLoading) return (
+  if (userLoading || !userInfo) return (
     <div className="app-layout app-layout-dashboard">
       <Header />
       <main className="dashboard-main"><p className="page-loading">Chargement…</p></main>
