@@ -34,7 +34,7 @@ export default function ProfilePage() {
   const avatarSrc = userInfo.profilePicture || profileClara
 
   const { fullName, age, height, weight, gender } = userInfo
-  const { totalDistance, totalDuration: rawDuration, sessionsCount } = userInfo.stats
+  const { totalDistance, totalDuration: rawDuration, sessionsCount, restDays } = userInfo.stats
   const totalDuration = formatDuration(rawDuration)
 
   return (
@@ -125,7 +125,7 @@ export default function ProfilePage() {
               <article className="profile-stat-card">
                 <h3 className="profile-stat-title">Nombre de jours de repos</h3>
                 <p className="profile-stat-value">
-                  <span className="profile-stat-number">{profileFallbackStats.restDays}</span>
+                  <span className="profile-stat-number">{restDays}</span>
                   <span className="profile-stat-unit"> jours</span>
                 </p>
               </article>

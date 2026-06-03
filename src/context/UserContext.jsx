@@ -23,6 +23,7 @@ function normalizeUserInfo(data) {
       totalDistance: s.totalDistance != null ? parseFloat(s.totalDistance) : '—',
       totalDuration: s.totalDuration ?? 0,
       sessionsCount: s.totalSessions ?? s.sessionsCount ?? '—',
+      restDays: s.restDays ?? '—',
     },
     weeklyGoal: data.weeklyGoal ?? '—',
   }
