@@ -31,13 +31,14 @@ function normalizeUserInfo(data) {
 export function UserProvider({ children }) {
   const { isAuthenticated } = useAuth()
   const [userInfo, setUserInfo] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
     if (!isAuthenticated) {
       setUserInfo(null)
       setError(null)
+      setLoading(false)
       return
     }
 

@@ -163,26 +163,6 @@ export default function DashboardPage() {
   const { startWeek: cwStart, endWeek: cwEnd } = useMemo(() => getCurrentWeekBounds(), [])
   const { data: currentWeekActivity } = useUserActivity(cwStart, cwEnd)
 
-  const { fullName, weeklyGoal } = userInfo
-  const memberSince = userInfo.memberSince
-    ? `Membre depuis le ${formatLongDate(userInfo.memberSince)}`
-    : '—'
-  const totalDistance = userInfo.stats.totalDistance
-
-  const avatarSrc = userInfo.profilePicture || profileClara
-
-  // Stats section "Cette semaine" — semaine courante uniquement
-  const sessionsCount = currentWeekActivity?.weeklyStats?.sessionsCount ?? '—'
-  const weeklyDuration = currentWeekActivity?.weeklyStats?.totalDuration ?? '—'
-  const rawWeeklyDistance = currentWeekActivity?.weeklyStats?.totalDistance
-  const weeklyDistance = rawWeeklyDistance != null ? roundDist(rawWeeklyDistance) : '—'
-
-  // BPM moyen affiché dans l'en-tête de la carte FC — suit la période navigable
-  const heartRate = avgHeartRate(activity?.sessions)
-
-  const periodLabel = `${formatShortDate(startWeek)} - ${formatShortDate(endWeek)}`
-  const weekLabel = `Du ${formatSlashDate(cwStart)} au ${formatSlashDate(cwEnd)}`
-
   // Données graphique distance : 4 slots fixes S1–S4 depuis le début de la période
   const weeklyDistanceData = useMemo(() => {
     if (!activity) return []
@@ -222,6 +202,26 @@ export default function DashboardPage() {
       <Footer />
     </div>
   )
+
+  const { fullName, weeklyGoal } = userInfo
+  const memberSince = userInfo.memberSince
+    ? `Membre depuis le ${formatLongDate(userInfo.memberSince)}`
+    : '—'
+  const totalDistance = userInfo.stats.totalDistance
+
+  const avatarSrc = userInfo.profilePicture || profileClara
+
+  // Stats section "Cette semaine" — semaine courante uniquement
+  const sessionsCount = currentWeekActivity?.weeklyStats?.sessionsCount ?? '—'
+  const weeklyDuration = currentWeekActivity?.weeklyStats?.totalDuration ?? '—'
+  const rawWeeklyDistance = currentWeekActivity?.weeklyStats?.totalDistance
+  const weeklyDistance = rawWeeklyDistance != null ? roundDist(rawWeeklyDistance) : '—'
+
+  // BPM moyen affiché dans l'en-tête de la carte FC — suit la période navigable
+  const heartRate = avgHeartRate(activity?.sessions)
+
+  const periodLabel = `${formatShortDate(startWeek)} - ${formatShortDate(endWeek)}`
+  const weekLabel = `Du ${formatSlashDate(cwStart)} au ${formatSlashDate(cwEnd)}`
 
   // Données graphique donut objectif hebdomadaire
   const completedSessions = typeof sessionsCount === 'number' ? sessionsCount : 0
