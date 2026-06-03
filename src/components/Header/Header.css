@@ -17,63 +17,6 @@
     font-size: 28px;
     font-weight: 800;
 }
-.brand-icon .orange-rect.rect-1 {
-    transform: translate(6px, 28.7px) rotate(180deg);
-    animation: rect1Animation 3s infinite;
-    
-}
-@keyframes rect1Animation {
-    0% { transform: translate(6px, 28.7px) rotate(180deg); }
-    25%{ transform: translate(6px, 33.7px) rotate(180deg); }
-    50% { transform: translate(6px, 33.7px) rotate(180deg); }
-    75% { transform: translate(6px, 28.7px) rotate(180deg); }
-    100% { transform: translate(6px, 28.7px) rotate(180deg); }
-}
-.brand-icon .orange-rect.rect-2 {
-    transform: translate(14px, 28px) rotate(180deg);
-    animation: rect2Animation 3s infinite;
-}
-@keyframes rect2Animation {
-    0% { transform: translate(14px, 28px) rotate(180deg); }
-    25%{ transform: translate(14px, 35px) rotate(180deg); }
-    50%{ transform: translate(14px, 35px) rotate(180deg); }
-    75% { transform: translate(14px, 28px) rotate(180deg); }
-    100% { transform: translate(14px, 28px) rotate(180deg); }
-}
-.brand-icon .orange-rect.rect-3 {
-    transform: translate(22px, 28px) rotate(180deg);
-    animation: rect3Animation 3s infinite;
-}
-@keyframes rect3Animation {
-    0% { transform: translate(22px, 28px) rotate(180deg); }
-    25%{ transform: translate(22px, 30.5px) rotate(180deg); }
-    50%{ transform: translate(22px, 30.5px) rotate(180deg); }
-    75% { transform: translate(22px, 28px) rotate(180deg); }
-    100% { transform: translate(22px, 28px) rotate(180deg); }
-}
-.brand-icon .orange-rect.rect-4 {
-    transform: translate(30px, 28px) rotate(180deg);
-    animation: rect4Animation 3s infinite;
-}
-@keyframes rect4Animation {
-    0% { transform: translate(30px, 28px) rotate(180deg); }
-    25%{ transform: translate(30px, 34px) rotate(180deg); }
-    50%{ transform: translate(30px, 34px) rotate(180deg); }
-    75% { transform: translate(30px, 28px) rotate(180deg); }
-    100% { transform: translate(30px, 28px) rotate(180deg); }
-}
-.brand-icon .orange-rect.rect-5 {
-    transform: translate(38px, 28px) rotate(180deg);
-    animation: rect5Animation 3s infinite;
-}
-@keyframes rect5Animation {
-    0% { transform: translate(38px, 28px) rotate(180deg); }
-    25%{ transform: translate(38px, 31.5px) rotate(180deg); }
-    50%{ transform: translate(38px, 31.5px) rotate(180deg); }
-    75% { transform: translate(38px, 28px) rotate(180deg); }
-    100% { transform: translate(38px, 28px) rotate(180deg); }
-}
-
 .main-nav {
     width: 460px;
     padding: 16px 48px;

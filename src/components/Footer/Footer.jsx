@@ -1,5 +1,5 @@
 import './Footer.css'
-import logoMark from '../../../assets/icons/logo-mark.svg'
+import BrandLogo from '../BrandLogo/BrandLogo'
 
 export default function Footer() {
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
               <a className="footer-nav-link" href="#">Contact</a>
             </li>
             <li className="footer-nav-item footer-logo-item">
-              <img className="footer-logo-icon" src={logoMark} alt="SportSee" />
+              <BrandLogo />
             </li>
           </ul>
         </nav>
