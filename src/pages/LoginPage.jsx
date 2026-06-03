@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import '../styles/login.css'
 import loginRunning from '../../assets/images/login-running.jpg'
 
 export default function LoginPage() {
-  const { signIn } = useAuth()
+  const { signIn, isAuthenticated } = useAuth()
   const navigate = useNavigate()
   const [error, setError] = useState(null)
+
+  if (isAuthenticated) return <Navigate to="/dashboard" replace />
 
   async function handleSubmit(e) {
     e.preventDefault()
